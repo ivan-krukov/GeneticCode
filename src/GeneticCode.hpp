@@ -2,6 +2,7 @@
 #define GENETIC_CODE_H
 
 #include <string>
+#include <vector>
 
 #define N_CODONS 64
 
@@ -12,7 +13,7 @@ class Codon
 public:
   unsigned int index;
   std::string sequence;
-  Rcpp::IntegerVector nucleoitdes;
+  std::vector<unsigned int> nucleoitdes;
   char amino_acid;
   bool is_stop;
 
@@ -26,9 +27,9 @@ class GeneticCode
 
 public:
   GeneticCode(std::string type);
-  const Codon operator()(const unsigned int i);
-  // const Codon operator()(const char sequence[4]);
-  // const Codon operator()(const Nucleotide nucleotides[3]);
+  const Codon operator()(const unsigned int idx);                     // From index
+  const Codon operator()(std::vector<unsigned int> n);                // From nucleotide numbers
+  const Codon operator()(const std::string);                          // From sequence
 private:
   std::string code;
   std::string type;
