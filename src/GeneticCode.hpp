@@ -11,10 +11,11 @@ class Codon
 {
 public:
   unsigned int index;
-  char sequence[3+1];
-  Nucleotide nucleoitdes[3];
+  std::string sequence;
+  Rcpp::IntegerVector nucleoitdes;
   char amino_acid;
   bool is_stop;
+
 
   const unsigned int distance(Codon& b);
   const std::string to_json();

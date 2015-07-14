@@ -22,16 +22,15 @@ GeneticCode::GeneticCode(string type): type(type)
       for (unsigned int k = T; k <= G; k++) {
         codons[c].index = c;
 
-        codons[c].sequence[0] = nucleotides[i];
-        codons[c].sequence[1] = nucleotides[j];
-        codons[c].sequence[2] = nucleotides[k];
-        codons[c].sequence[3] = '\0';
+        codons[c].sequence.append(1,nucleotides[i]);
+        codons[c].sequence.append(1,nucleotides[j]);
+        codons[c].sequence.append(1,nucleotides[k]);
 
         codons[c].amino_acid = code[c];
 
-        codons[c].nucleoitdes[0] = (Nucleotide)i;
-        codons[c].nucleoitdes[1] = (Nucleotide)j;
-        codons[c].nucleoitdes[2] = (Nucleotide)k;
+        codons[c].nucleoitdes.push_back(i);
+        codons[c].nucleoitdes.push_back(j);
+        codons[c].nucleoitdes.push_back(k);
 
         c++;
       }
@@ -42,7 +41,7 @@ GeneticCode::GeneticCode(string type): type(type)
 const Codon GeneticCode::operator()(const unsigned int i)
 {
   if (i < 1 || i > 64) throw invalid_argument("Codon index should be between 1 and 64");
-  Rcout << i << " " << codons[i].sequence << endl;
+  // Rcout << i << " " << codons[i].sequence << endl;
   return codons[i];
 }
 
@@ -55,9 +54,9 @@ RCPP_MODULE(GeneticCode_module)
 {
   class_<Codon>("Codon")
   // .default_constructor()
-  // .field("sequence", &Codon::sequence)
-  // .field("amino_acid", &Codon::amino_acid)
-  // .field("nucleotides", &Codon::nucleoitdes)
+  .field("sequence", &Codon::sequence)
+  .field("amino_acid", &Codon::amino_acid)
+  .field("nucleotides", &Codon::nucleoitdes)
   .field("index", &Codon::index);
 
   class_<GeneticCode>("GeneticCode")
