@@ -1,14 +1,14 @@
-Package: Nothlir
+Package: GeneticCode
 Type: Package
-Title: What the Package Does (Title Case)
+Title: A C++ implementation of a genetic code table, with R bindings
 Version: 0.1
 Date: 2015-07-13
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Ivan Krukov
+Maintainer: Ivan Krukov <foob@bar.net>
+Description: This package creates a codon table with associated nucleotide sequences
+License: DWTFUW
 LazyData: TRUE
-Imports: 
+Imports:
     Rcpp (>= 0.11.6)
-LinkingTo: 
+LinkingTo:
     Rcpp
